@@ -41,12 +41,19 @@ export function useGsap(root, { stagger = 0.09, start = 'top 85%' } = {}) {
     return (root && unref(root)) || document
   }
 
-  function animate() {
-    if (reducedMotion()) return
+  /**
+   * @param {Element} [only] - Nodo limitante: si se pasa, solo se animan los
+   *   elementos dentro de él (por defecto, todo el componente).
+   */
+  function animate(only) {
+    if (reducedMotion()) {
+      settle()
+      return
+    }
     kill()
 
     ctx = gsap.context(() => {
-      const base = scope()
+      const base = only || scope()
 
       /* ---------- Entradas genéricas: [data-reveal] ---------- */
       base.querySelectorAll('[data-reveal]').forEach((el) => {
@@ -118,6 +125,49 @@ export function useGsap(root, { stagger = 0.09, start = 'top 85%' } = {}) {
     ScrollTrigger.refresh()
   }
 
+  /**
+   * Estado final sin animación: usado con `prefers-reduced-motion` para que
+   * los contadores y las barras muestren su valor real en lugar de 0 / 0%.
+   */
+  function settle() {
+    const base = scope()
+    if (!base || !base.querySelectorAll) return
+
+    base.querySelectorAll('[data-count]').forEach((el) => {
+      el.textContent = `${Number(el.dataset.count) || 0}${el.dataset.suffix || ''}`
+    })
+    base.querySelectorAll('[data-progress]').forEach((bar) => {
+      bar.style.width = `${Number(bar.dataset.progress) || 0}%`
+    })
+  }
+
+  /**
+   * Revela inmediatamente los elementos dentro de `el` sin tocar el contexto
+   * principal (no revierte animaciones ya ejecutadas).
+   * Busca `[data-reveal]` y, si no hay, anima los hijos directos (el grid).
+   */
+  function revealNow(el) {
+    if (!el || reducedMotion()) return
+
+    let nodes = el.querySelectorAll('[data-reveal]')
+    if (!nodes.length) nodes = el.children
+    if (!nodes.length) return
+
+    gsap.killTweensOf(nodes)
+    gsap.fromTo(
+      nodes,
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.07,
+        clearProps: 'opacity,transform',
+      },
+    )
+  }
+
   function kill() {
     triggers.forEach((t) => t.kill())
     triggers = []
@@ -127,10 +177,10 @@ export function useGsap(root, { stagger = 0.09, start = 'top 85%' } = {}) {
     }
   }
 
-  onMounted(() => nextTick(animate))
+  onMounted(() => nextTick(() => animate()))
   onBeforeUnmount(kill)
 
-  return { animate, kill, gsap, ScrollTrigger }
+  return { animate, revealNow, kill, gsap, ScrollTrigger }
 }
 
 export default useGsap

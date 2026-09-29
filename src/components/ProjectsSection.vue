@@ -13,12 +13,15 @@ const filtered = computed(() =>
     : projects.filter((p) => p.category === activeCat.value),
 )
 
-// Re-animar al cambiar de filtro
+// Re-animar solo el grid al cambiar de filtro (sin tocar el resto)
 const root = ref(null)
-const { animate } = useGsap(root)
+const grid = ref(null)
+const { revealNow } = useGsap(root)
+
 function setCat(id) {
+  if (activeCat.value === id) return
   activeCat.value = id
-  requestAnimationFrame(() => animate())
+  requestAnimationFrame(() => revealNow(grid.value))
 }
 </script>
 
