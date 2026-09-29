@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0c0f" />
+
+    <title>Jhonpi • Portafolio — Desarrollador Full Stack</title>
+    <meta
+      name="description"
+      content="Portafolio de Jhon Alexander Pimiento Bueno (Jhonpi), desarrollador Full Stack y estudiante de ADSO en el SENA. Proyectos, habilidades técnicas y contacto."
+    />
+    <meta name="author" content="Jhon Alexander Pimiento Bueno" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jhonpi • Portafolio — Desarrollador Full Stack" />
+    <meta
+      property="og:description"
+      content="Desarrollador Full Stack | Estudiante ADSO (SENA). Conoce mis proyectos, habilidades y descarga mi hoja de vida."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Evita el "flash" de tema incorrecto antes de que cargue Vue -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme')
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
+          var theme = saved || (prefersLight ? 'light' : 'dark')
+          document.documentElement.setAttribute('data-theme', theme)
+          var lang = localStorage.getItem('lang') || 'es'
+          document.documentElement.setAttribute('lang', lang)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
