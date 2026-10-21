@@ -3,6 +3,8 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGsap } from '../composables/useGsap.js'
 import { profile, socials } from '../data/portfolio.js'
+import LogoMark from './LogoMark.vue'
+import Icon from './Icon.vue'
 
 const { t } = useI18n()
 
@@ -10,14 +12,6 @@ const root = ref(null)
 useGsap(root)
 
 const year = new Date().getFullYear()
-
-const icons = {
-  github:
-    'M12 .5C5.73.5.9 5.34.9 11.6c0 4.9 3.17 9.05 7.57 10.52.55.1.76-.24.76-.53l-.02-1.86c-3.08.67-3.73-1.49-3.73-1.49-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.49 0-1.21.43-2.2 1.15-2.98-.12-.28-.5-1.41.11-2.94 0 0 .94-.3 3.07 1.14a10.6 10.6 0 0 1 5.6 0c2.12-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.66.11 2.94.72.78 1.15 1.77 1.15 2.98 0 4.27-2.6 5.2-5.07 5.48.4.34.75 1.02.75 2.06l-.01 3.05c0 .3.2.64.77.53A11.12 11.12 0 0 0 23 11.6C23 5.34 18.27.5 12 .5Z',
-  linkedin:
-    'M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.07 1.4-2.07 2.86V21h-4V9Z',
-  mail: 'M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.4.5 7.6 5.4L19.6 6H4.4ZM20 7.8l-7.4 5.3a1 1 0 0 1-1.2 0L4 7.8V18.5c0 .28.22.5.5.5h15c.28 0 .5-.22.5-.5V7.8Z',
-}
 
 const links = computed(() => [
   { id: 'inicio', label: t('nav.home') },
@@ -42,7 +36,7 @@ function backTop() {
     <div class="container footer-inner">
       <div class="foot-brand" data-reveal="up">
         <a href="#inicio" class="logo" @click.prevent="goTo('inicio')">
-          <span class="logo-mark">J</span>
+          <LogoMark :size="36" />
           <span class="logo-text">{{ profile.shortName }}<i>.</i></span>
         </a>
         <p class="tagline">{{ t('footer.tagline') }}</p>
@@ -57,9 +51,7 @@ function backTop() {
             rel="noopener"
             :aria-label="s.label"
           >
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-              <path :d="icons[s.icon]" />
-            </svg>
+            <Icon :name="s.icon" :size="18" />
           </a>
         </div>
       </div>
@@ -72,10 +64,10 @@ function backTop() {
 
       <div class="foot-cta" data-reveal="up">
         <a :href="profile.cv" class="btn btn-primary" download target="_blank" rel="noopener">
-          📄 {{ t('nav.downloadCV') }}
+          <Icon name="download" :size="17" /> {{ t('nav.downloadCV') }}
         </a>
         <button class="back-top" type="button" @click="backTop">
-          ↑ {{ t('footer.backTop') }}
+          <Icon name="arrow-up" :size="15" /> {{ t('footer.backTop') }}
         </button>
       </div>
     </div>
@@ -111,15 +103,11 @@ function backTop() {
   font-size: 20px;
   color: var(--text-strong);
 }
-.logo-mark {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 17px;
+.logo .mark {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.logo:hover .mark {
+  transform: rotate(-6deg) scale(1.05);
 }
 .logo-text i {
   font-style: normal;
@@ -187,6 +175,10 @@ function backTop() {
   justify-items: stretch;
 }
 .back-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 11px 18px;
   border-radius: 999px;
   border: 1px solid var(--border);

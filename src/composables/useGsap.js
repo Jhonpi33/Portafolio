@@ -4,22 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/**
- * Composable de animaciones con GSAP + ScrollTrigger (alcance por componente).
- *
- * Uso:
- *   const root = ref(null)          // ref del elemento raíz de la sección
- *   useGsap(root)
- *
- * En el template:
- *   <div data-reveal="up">          → sube + fade
- *   <div data-reveal="left">        → entra desde la izquierda
- *   <div data-reveal="right">       → entra desde la derecha
- *   <div data-reveal="scale">       → escala desde 0.9
- *   <div data-reveal="stagger">     → contenedor: anima sus hijos en cascada
- *   <span data-count="90" data-suffix="%">0%</span>   → contador numérico
- *   <span class="bar-fill" data-progress="85">        → barra de progreso
- */
+
 
 const variants = {
   up: { y: 44, x: 0 },

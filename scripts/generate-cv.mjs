@@ -19,7 +19,7 @@ const lines = [
   '',
   'PERFIL',
   'Estudiante de Analitica y Desarrollo de Software enfocado en',
-  'construir aplicaciones web completas, desde la interfaz en Vue.js',
+  'construir aplicaciones web completas desde la interfaz',
   'hasta la logica del servidor y las bases de datos.',
   '',
   'FORMACION',

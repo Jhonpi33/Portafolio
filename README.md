@@ -43,6 +43,19 @@ npm test         # smoke test SSR (verifica que todo renderiza)
 
 ---
 
+## 🌐 Demos en vivo
+
+Los proyectos destacados del portafolio con demo pública verificada:
+
+| Proyecto | Demo | Alojamiento |
+|---|---|---|
+| **GUA-iti** — gestión de guiñas (Vue 3 + Quasar + Express + MongoDB) | [guaiti-web.onrender.com](https://guaiti-web.onrender.com/) | Render (API + web) |
+| **Tienda — Gestión de Inventario** (Vue 3 + Express + MongoDB) | [tienda-sena-market.onrender.com](https://tienda-sena-market.onrender.com/) | Render |
+| **Fotos Panachi** — catálogo fotográfico | [fotos-panachi.onrender.com](https://fotos-panachi.onrender.com/) | Render |
+| **CRUD Barbería** — reservas y gestión (Quasar CLI + Vue 3) | [jhonpi33.github.io/CRUD_BARBERIA](https://jhonpi33.github.io/CRUD_BARBERIA/) | GitHub Pages |
+
+---
+
 ## 📁 Estructura
 
 ```
@@ -72,6 +85,8 @@ PORTAFOLIO_Jhonpi/
     │   └── useScroll.js         # scroll-spy + estado de scroll
     └── components/
         ├── NavBar.vue           # 🔗 navegación, hamburguesa, idioma, tema
+        ├── LogoMark.vue         # 🏷️ monograma JP (SVG con degradado azul)
+        ├── Icon.vue             # 🎯 set propio de iconos SVG (24×24, trazo)
         ├── HeroSection.vue      # Inicio
         ├── AboutSection.vue     # Sobre mí
         ├── SkillsSection.vue    # Habilidades
@@ -79,6 +94,21 @@ PORTAFOLIO_Jhonpi/
         ├── ContactSection.vue   # Contacto + formulario
         └── SiteFooter.vue       # Footer
 ```
+
+### Sistema de diseño (paleta azul)
+
+Todo el color vive en `src/style.css` como **design tokens**. No hay colores sueltos en los componentes: si cambias un token, cambia todo el sitio.
+
+| Token | Modo oscuro | Modo claro | Para qué sirve |
+| --- | --- | --- | --- |
+| `--bg` / `--bg-2` | `#060a13` / `#090f1c` | `#f3f6fc` / `#ffffff` | fondo de página y de secciones alternas |
+| `--surface` / `--surface-2` | `#0e1524` / `#131c2e` | `#ffffff` / `#e8eefb` | tarjetas, inputs, chips |
+| `--accent` | `#4d8dff` | `#2563eb` | botones primarios, barras, filtros activos |
+| `--accent-text` | `#77a8ff` | `#1d4ed8` | texto y eyebrows sobre fondo |
+| `--accent-2` | `#35c3f0` | `#0284c7` | segundo color de los degradados |
+| `--accent-ink` | `#041020` | `#ffffff` | texto encima del acento |
+
+**Iconografía:** no se usan emojis ni librerías externas. `src/components/Icon.vue` concentra un set propio de SVG (`mail`, `download`, `github`, `layout`, `server`, `database`, `wrench`, `cap`, `pin`, `target`, `zap`, `send`, `sun`, `moon`, …). Para añadir uno, agrégalo al objeto `strokeIcons` (trazo) o `fillIcons` (relleno) y úsalo como `<Icon name="..." :size="20" />`.
 
 ### Secciones
 
@@ -92,9 +122,9 @@ PORTAFOLIO_Jhonpi/
 
 ```js
 export const profile = {
-  email:    'tucorreo@ejemplo.com',           // 👈 tu correo real
-  github:   'https://github.com/tu-usuario',  // 👈 tu GitHub
-  linkedin: 'https://www.linkedin.com/in/tu-usuario', // 👈 tu LinkedIn
+  email:    'jhonpimiento31@gmail.com',           // 👈 tu correo real
+  github:   'https://github.com/Jhonpi33',        // 👈 tu GitHub
+  linkedin: 'https://www.linkedin.com/in/tu-usuario', // 👈 pon tu LinkedIn real (pendiente)
   cv:       '/cv/cv-jhon-pimiento.pdf',
 }
 ```

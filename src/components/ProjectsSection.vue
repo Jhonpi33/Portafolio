@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGsap } from '../composables/useGsap.js'
 import { projects, projectCategories } from '../data/portfolio.js'
+import Icon from './Icon.vue'
 
 const { t, locale } = useI18n()
 
@@ -66,11 +67,7 @@ function setCat(id) {
                 rel="noopener"
                 :aria-label="t('projects.viewCode')"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M12 .5C5.73.5.9 5.34.9 11.6c0 4.9 3.17 9.05 7.57 10.52.55.1.76-.24.76-.53l-.02-1.86c-3.08.67-3.73-1.49-3.73-1.49-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.49 0-1.21.43-2.2 1.15-2.98-.12-.28-.5-1.41.11-2.94 0 0 .94-.3 3.07 1.14a10.6 10.6 0 0 1 5.6 0c2.12-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.66.11 2.94.72.78 1.15 1.77 1.15 2.98 0 4.27-2.6 5.2-5.07 5.48.4.34.75 1.02.75 2.06l-.01 3.05c0 .3.2.64.77.53A11.12 11.12 0 0 0 23 11.6C23 5.34 18.27.5 12 .5Z"
-                  />
-                </svg>
+                <Icon name="github" :size="17" />
                 {{ t('projects.viewCode') }}
               </a>
               <a
@@ -81,9 +78,7 @@ function setCat(id) {
                 rel="noopener"
                 :aria-label="t('projects.viewDemo')"
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                <Icon name="external-link" :size="17" />
                 {{ t('projects.viewDemo') }}
               </a>
             </div>

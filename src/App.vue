@@ -17,6 +17,7 @@ const progress = computed(() => {
 })
 </script>
 
+
 <template>
   <!-- Barra de progreso de lectura -->
   <div class="scroll-progress" :style="{ transform: `scaleX(${progress})` }" aria-hidden="true" />

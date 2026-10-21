@@ -5,7 +5,7 @@ const theme = ref('dark')
 function apply() {
   document.documentElement.setAttribute('data-theme', theme.value)
   const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) meta.setAttribute('content', theme.value === 'dark' ? '#0a0c0f' : '#f6f7f4')
+  if (meta) meta.setAttribute('content', theme.value === 'dark' ? '#060a13' : '#f3f6fc')
 }
 
 export function initTheme() {

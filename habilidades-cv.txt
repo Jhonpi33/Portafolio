@@ -1,0 +1,103 @@
+============================================================
+ HABILIDADES PARA HOJA DE VIDA — Portafolio Jhonpi
+ Jhon Alexander Pimiento Bueno (Jhonpi)
+============================================================
+
+
+------------------------------------------------------------
+1. HABILIDADES TÉCNICAS
+------------------------------------------------------------
+
+FRONTEND
+- Vue 3 (Composition API, <script setup>, composables)
+- JavaScript ES6+
+- HTML5
+- CSS3 (Flexbox, Grid, media queries, custom properties)
+- Vite (dev server y build de producción)
+- Diseño responsivo (celular, tablet, escritorio)
+- Sistemas de diseño con design tokens
+- Modo oscuro / claro con variables CSS
+
+INTERACCIÓN Y ANIMACIÓN
+- GSAP + ScrollTrigger
+  (entradas escalonadas, contadores, barras de progreso, parallax)
+
+INTERNACIONALIZACIÓN Y ACCESIBILIDAD
+- i18n con vue-i18n (español / inglés)
+- Accesibilidad web: aria-label, aria-expanded, foco visible,
+  soporte de prefers-reduced-motion
+
+INGENIERÍA Y HERRAMIENTAS
+- Git y GitHub
+- Despliegue en Vercel con integración continua
+- Scripts de automatización con Node.js
+- Testing: smoke test de renderizado SSR
+
+
+------------------------------------------------------------
+2. COMPETENCIAS BLANDAS
+------------------------------------------------------------
+
+- Autoaprendizaje (tecnologías aprendidas de forma independiente)
+- Atención al detalle (UI, contraste, consistencia visual)
+- Trabajo de principio a fin: diseño, código y despliegue
+- Comunicación técnica (documentación en README)
+- Organización del código (contenido separado de la presentación)
+- Resolución de problemas
+
+
+------------------------------------------------------------
+3. PÁRRAFO LISTO PARA PEGAR EN LA HOJA DE VIDA
+------------------------------------------------------------
+
+Portafolio web — Sitio personal desarrollado con Vue 3, Vite y
+GSAP, con animaciones, modo oscuro/claro, contenido bilingüe
+(ES/EN) y diseño 100% responsivo. Implementé un sistema de
+diseño basado en design tokens, un set propio de iconos SVG y
+despliegue continuo en Vercel. Incluye smoke test SSR con
+Node.js.
+
+
+------------------------------------------------------------
+4. FICHA DEL PROYECTO
+------------------------------------------------------------
+
+TÍTULO ....... Portafolio Personal
+AÑO ......... 2025 – 2026
+ROL .......... Diseño y desarrollo completo (individual)
+
+TECNOLOGÍAS .. Vue 3 · Vite · GSAP · vue-i18n · @vueuse/core
+               JavaScript · HTML5 · CSS3 · Node.js
+               Git/GitHub · Vercel
+
+DESCRIPCIÓN .. Sitio personal con animaciones GSAP, modo
+               oscuro/claro, i18n ES/EN, sistema de diseño con
+               design tokens y despliegue automático en Vercel.
+
+DESTACADOS ...
+  · Sistema de diseño propio con variables CSS (temas claro y
+    oscuro desde un único set de tokens)
+  · Set de más de 30 iconos SVG hechos a mano (sin librerías
+    externas ni emojis)
+  · Contenido bilingüe ES/EN con persistencia en localStorage
+  · Animaciones de entrada, contadores y barras con GSAP
+  · Accesibilidad: etiquetas ARIA, foco visible y soporte de
+    movimiento reducido
+  · Smoke test SSR que verifica el renderizado en ambos idiomas
+
+
+------------------------------------------------------------
+5. CÓMO UBICARLO EN EL CV
+------------------------------------------------------------
+
+- Ponerlo como "PROYECTO" (no como experiencia laboral).
+- Colocar el enlace del dominio de Vercel arriba, al lado del
+  correo: los reclutadores lo abren primero.
+- En "Tecnologías" listar máximo 6 herramientas; el resto va
+  en la descripción.
+
+
+============================================================
+ Nota: actualiza el enlace (tu dominio de Vercel), tu correo,
+ GitHub y LinkedIn antes de enviarlo.
+============================================================

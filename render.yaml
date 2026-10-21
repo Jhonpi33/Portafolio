@@ -1,0 +1,9 @@
+# Blueprint de Render: portafolio estático (Vite + Vue)
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: portafolio-jhonpi
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeployTrigger: commit # cada push actualiza la demo automáticamente

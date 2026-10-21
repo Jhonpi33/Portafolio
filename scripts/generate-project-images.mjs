@@ -10,13 +10,23 @@ import { dirname, join } from 'node:path'
 const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'img', 'proyectos')
 mkdirSync(outDir, { recursive: true })
 
+/* Paleta: toda la familia azul para que el grid se vea cohesionado,
+   variando solo el matiz (índigo → azul → cielo → cian). */
 const items = [
-  { file: 'portafolio.svg', title: 'Portafolio Personal', sub: 'Vue 3 · Vite · GSAP', c1: '#a8ff60', c2: '#5eead4', icon: 'J' },
-  { file: 'api-tareas.svg', title: 'API REST de Tareas', sub: 'Node · Express · MySQL', c1: '#7c5cff', c2: '#47bfff', icon: '{ }' },
-  { file: 'ecommerce.svg', title: 'Tienda Online', sub: 'Vue · Pinia · CSS3', c1: '#ff8a5c', c2: '#ffd166', icon: '[]' },
-  { file: 'gestor-gastos.svg', title: 'Gestor de Gastos', sub: 'JavaScript · Firebase', c1: '#ff5c8a', c2: '#ffb86b', icon: '$' },
-  { file: 'blog-adso.svg', title: 'Blog Académico', sub: 'PHP · MySQL · Bootstrap', c1: '#5cc9ff', c2: '#7c5cff', icon: '✎' },
-  { file: 'clima-app.svg', title: 'App del Clima', sub: 'JavaScript · API REST', c1: '#5eead4', c2: '#47bfff', icon: '☀' },
+  { file: 'portafolio.svg', title: 'Portafolio Personal', sub: 'Vue 3 · Vite · GSAP', c1: '#6aa4ff', c2: '#1d4ed8', icon: 'JP' },
+  { file: 'lab-ficat.svg', title: 'Laboratorio FICAT', sub: 'Vue · Quasar · Node.js', c1: '#38bdf8', c2: '#2563eb', icon: 'LF' },
+  { file: 'guaiti.svg', title: 'Gua-iti Aventura', sub: 'Vue · Express · JWT', c1: '#818cf8', c2: '#4338ca', icon: 'GA' },
+  { file: 'tienda.svg', title: 'Tienda Inventario', sub: 'Vue · Express · Docker', c1: '#22d3ee', c2: '#0e7490', icon: '$' },
+  { file: 'gestion-academica.svg', title: 'Gestión Académica', sub: 'Vue · Quasar · JWT', c1: '#60a5fa', c2: '#1e40af', icon: 'JWT' },
+  { file: 'fichero.svg', title: 'Fichero', sub: 'Node · PostgreSQL · Render', c1: '#7dd3fc', c2: '#0284c7', icon: '>_' },
+  { file: 'crud-barberia.svg', title: 'Panel de Barbería', sub: 'Vue · Vite · CRUD', c1: '#6aa4ff', c2: '#1d4ed8', icon: 'CR' },
+  { file: 'servicios-sena.svg', title: 'Servicios SENA', sub: 'Vue · Quasar · SPA', c1: '#38bdf8', c2: '#2563eb', icon: 'SE' },
+  { file: 'biblioteca-api.svg', title: 'API de Reservas', sub: 'Node · Express · JWT', c1: '#818cf8', c2: '#4338ca', icon: '{ }' },
+  { file: 'guaiti-guias.svg', title: 'Guaiti Guianzas', sub: 'Supabase · JavaScript', c1: '#22d3ee', c2: '#0e7490', icon: 'API' },
+  { file: 'areagua.svg', title: 'Areagua', sub: 'HTML · CSS · JavaScript', c1: '#60a5fa', c2: '#1e40af', icon: 'AR' },
+  { file: 'mj.svg', title: 'MJ Cosmetología', sub: 'HTML · CSS · Carrito', c1: '#7dd3fc', c2: '#0284c7', icon: 'MJ' },
+  { file: 'fotos-panachi.svg', title: 'Fotos Panachi', sub: 'Web Crypto · AES-GCM', c1: '#6aa4ff', c2: '#1d4ed8', icon: 'AES' },
+  { file: 'abogados.svg', title: 'Estudio Jurídico', sub: 'HTML · CSS · Responsive', c1: '#38bdf8', c2: '#2563eb', icon: 'AJ' },
 ]
 
 const W = 800
@@ -25,8 +35,8 @@ const H = 500
 const svg = ({ file, title, sub, c1, c2, icon }) => `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1014"/>
-      <stop offset="100%" stop-color="#141a21"/>
+      <stop offset="0%" stop-color="#070c17"/>
+      <stop offset="100%" stop-color="#0d1526"/>
     </linearGradient>
     <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="${c1}"/>

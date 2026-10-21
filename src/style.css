@@ -5,26 +5,26 @@
 :root {
   color-scheme: dark;
 
-  /* superficies */
-  --bg: #0a0c0f;
-  --bg-2: #0d1014;
-  --surface: #12161b;
-  --surface-2: #171c23;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  /* superficies — azul profundo para que todo el sitio "huela" a azul */
+  --bg: #060a13;
+  --bg-2: #090f1c;
+  --surface: #0e1524;
+  --surface-2: #131c2e;
+  --border: rgba(150, 180, 255, 0.1);
+  --border-strong: rgba(150, 180, 255, 0.22);
 
   /* texto */
-  --text: #98a2ad;
-  --text-strong: #f4f7f2;
-  --text-dim: #6b7681;
+  --text: #94a3b8;
+  --text-strong: #eef2fb;
+  --text-dim: #64748b;
 
-  /* acento */
-  --accent: #a8ff60;
-  --accent-text: #a8ff60;
-  --accent-2: #5eead4;
-  --accent-ink: #06120a;
-  --accent-soft: rgba(168, 255, 96, 0.12);
-  --glow: rgba(168, 255, 96, 0.35);
+  /* acento — azul primario + cian secundario */
+  --accent: #4d8dff;
+  --accent-text: #77a8ff;
+  --accent-2: #35c3f0;
+  --accent-ink: #041020;
+  --accent-soft: rgba(77, 141, 255, 0.14);
+  --glow: rgba(77, 141, 255, 0.38);
 
   --danger: #ff6b6b;
 
@@ -42,25 +42,25 @@
 [data-theme='light'] {
   color-scheme: light;
 
-  --bg: #f6f7f4;
+  --bg: #f3f6fc;
   --bg-2: #ffffff;
   --surface: #ffffff;
-  --surface-2: #eef1ec;
-  --border: rgba(10, 20, 10, 0.1);
-  --border-strong: rgba(10, 20, 10, 0.2);
+  --surface-2: #e8eefb;
+  --border: rgba(10, 25, 60, 0.1);
+  --border-strong: rgba(10, 25, 60, 0.2);
 
-  --text: #545e6a;
-  --text-strong: #0c1116;
-  --text-dim: #8b949e;
+  --text: #4b5768;
+  --text-strong: #0a1120;
+  --text-dim: #7a8699;
 
-  --accent: #a8ff60;
-  --accent-text: #2f7d1f;
-  --accent-2: #0d9488;
-  --accent-ink: #06120a;
-  --accent-soft: rgba(47, 125, 31, 0.1);
-  --glow: rgba(47, 125, 31, 0.25);
+  --accent: #2563eb;
+  --accent-text: #1d4ed8;
+  --accent-2: #0284c7;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --glow: rgba(37, 99, 235, 0.3);
 
-  --shadow: 0 24px 50px -30px rgba(15, 30, 15, 0.45);
+  --shadow: 0 24px 50px -30px rgba(15, 35, 80, 0.4);
 }
 
 /* ---------- reset ---------- */

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGsap } from '../composables/useGsap.js'
 import { skillGroups, stackMarquee } from '../data/portfolio.js'
+import Icon from './Icon.vue'
 
 const { t, locale } = useI18n()
 
@@ -38,7 +39,9 @@ function levelLabel(level) {
       <div class="skills-grid" data-reveal="stagger">
         <article v-for="group in skillGroups" :key="group.id" class="skill-card card">
           <header class="skill-head">
-            <span class="skill-icon">{{ group.icon }}</span>
+            <span class="skill-icon">
+              <Icon :name="group.icon" :size="20" />
+            </span>
             <h3>{{ group.name[locale] }}</h3>
           </header>
 

@@ -60,7 +60,7 @@ try {
     ['Proyectos listados', (html.match(/class="project card"/g) || []).length >= 6],
     ['Habilidades (barras)', html.includes('data-progress')],
     ['Contadores', html.includes('data-count')],
-    ['CV descargable', html.includes('cv-jhon-pimiento.pdf')],
+    ['CV descargable', html.includes('Hoja_De_Vida_Jhon_Pimiento.pdf')],
     ['Menú hamburguesa', html.includes('class="burger"')],
     ['Botón idioma', html.includes('lang-btn')],
     ['Botón tema', html.includes('theme-icon')],
@@ -83,7 +83,7 @@ try {
   const enChecks = [
     ['EN: nav About me', htmlEn.includes('About me')],
     ['EN: projects title', htmlEn.includes('Things I have built')],
-    ['EN: no placeholder "hero."', !htmlEn.includes('hero.')],
+    ['EN: no placeholder "hero."', !htmlEn.replace(/\/img\/proyectos\/[^"')\s]+/g, '').includes('hero.')],
     ['EN: contact form', htmlEn.includes('Send message')],
     ['EN: CV label', htmlEn.includes('Download CV')],
   ]

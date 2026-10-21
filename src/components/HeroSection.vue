@@ -2,9 +2,21 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGsap } from '../composables/useGsap.js'
-import { profile } from '../data/portfolio.js'
+import { profile, heroChips } from '../data/portfolio.js'
+import Icon from './Icon.vue'
 
 const { t, tm } = useI18n()
+
+/* Coloca los chips en círculo alrededor de la foto */
+function chipStyle(i) {
+  const angle = ((-90 + (360 / heroChips.length) * i) * Math.PI) / 180
+  const r = 62
+  return {
+    left: `calc(50% + ${(Math.cos(angle) * r).toFixed(2)}%)`,
+    top: `calc(50% + ${(Math.sin(angle) * r).toFixed(2)}%)`,
+    '--delay': `${(i * 0.45).toFixed(2)}s`,
+  }
+}
 
 const section = ref(null)
 const photoWrap = ref(null)
@@ -74,11 +86,6 @@ onBeforeUnmount(() => {
     <div class="container hero-inner">
       <!-- Texto -->
       <div class="hero-copy">
-        <span class="badge" data-reveal="up">
-          <i class="pulse"></i>
-          {{ t('hero.status') }}
-        </span>
-
         <p class="hello" data-reveal="up">{{ t('hero.greeting') }}</p>
 
         <h1 class="title" data-reveal="up">
@@ -95,7 +102,8 @@ onBeforeUnmount(() => {
 
         <div class="cta" data-reveal="stagger">
           <button class="btn btn-primary" @click="goTo('proyectos')">
-            🚀 {{ t('hero.ctaProjects') }}
+            {{ t('hero.ctaProjects') }}
+            <Icon name="arrow-down" :size="17" />
           </button>
           <a
             :href="profile.cv"
@@ -104,10 +112,12 @@ onBeforeUnmount(() => {
             target="_blank"
             rel="noopener"
           >
-            📄 {{ t('hero.ctaCV') }}
+            <Icon name="download" :size="17" />
+            {{ t('hero.ctaCV') }}
           </a>
           <button class="btn btn-soft" @click="goTo('contacto')">
-            ✉️ {{ t('hero.ctaContact') }}
+            <Icon name="mail" :size="17" />
+            {{ t('hero.ctaContact') }}
           </button>
         </div>
 
@@ -135,11 +145,32 @@ onBeforeUnmount(() => {
             height="340"
           />
 
-          <!-- chips flotantes -->
-          <span class="chip-float chip-1">Vue.js</span>
-          <span class="chip-float chip-2">Node.js</span>
-          <span class="chip-float chip-3">JavaScript</span>
-          <span class="chip-float chip-4">MySQL</span>
+          <!-- chips flotantes con logo y link a cada tecnología -->
+          <a
+            v-for="(chip, i) in heroChips"
+            :key="chip.name"
+            class="chip-orbit"
+            :href="chip.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`Sitio oficial de ${chip.name}`"
+            :style="chipStyle(i)"
+          >
+            <span class="chip-float">
+              <img
+                :src="chip.logo"
+                alt=""
+                width="17"
+                height="17"
+                aria-hidden="true"
+                :class="{
+                  'is-github': chip.name === 'GitHub',
+                  'is-mysql': chip.name === 'MySQL'
+                }"
+              />
+              {{ chip.name }}
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -187,7 +218,7 @@ onBeforeUnmount(() => {
   height: 520px;
   bottom: -180px;
   right: -160px;
-  background: radial-gradient(circle, rgba(94, 234, 212, 0.35), transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 55%, transparent), transparent 70%);
 }
 .grid-lines {
   position: absolute;
@@ -209,41 +240,7 @@ onBeforeUnmount(() => {
 }
 
 /* copy */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  color: var(--accent-text);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-.pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 var(--glow);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 var(--glow);
-  }
-  70% {
-    box-shadow: 0 0 0 12px transparent;
-  }
-  100% {
-    box-shadow: 0 0 0 0 transparent;
-  }
-}
-
 .hello {
-  margin-top: 26px;
   font-size: 17px;
   color: var(--text-dim);
   font-weight: 500;
@@ -365,9 +362,24 @@ onBeforeUnmount(() => {
   }
 }
 
-.chip-float {
+.chip-orbit {
   position: absolute;
   z-index: 3;
+  display: block;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chip-orbit:hover,
+.chip-orbit:focus-visible {
+  z-index: 4;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.chip-float {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
   padding: 8px 15px;
   border-radius: 999px;
   background: var(--surface);
@@ -377,26 +389,37 @@ onBeforeUnmount(() => {
   color: var(--text-strong);
   box-shadow: var(--shadow);
   animation: float 5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.chip-1 {
-  top: 6%;
-  left: -8%;
-  animation-delay: 0s;
+.chip-float:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 26px -14px var(--glow);
 }
-.chip-2 {
-  top: 34%;
-  right: -12%;
-  animation-delay: 0.8s;
+.chip-orbit:focus-visible .chip-float {
+  border-color: var(--accent);
+  outline: none;
 }
-.chip-3 {
-  bottom: 16%;
-  left: -14%;
-  animation-delay: 1.6s;
+.chip-float img {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
-.chip-4 {
-  bottom: 2%;
-  right: -4%;
-  animation-delay: 2.4s;
+/* Logos que no se veían sobre el chip oscuro (tema dark):
+   - GitHub: el SVG original es casi negro (#181616) y desaparecía;
+     se pinta en blanco (versión oficial de GitHub para fondos oscuros).
+   - MySQL: azul muy oscuro (#00618A); se aclara hasta lograr contraste.
+   En tema claro se revierte: ahí los logos originales ya son visibles. */
+.chip-float img.is-github {
+  filter: brightness(0) invert(1);
+}
+.chip-float img.is-mysql {
+  filter: brightness(1.9) saturate(1.2);
+}
+[data-theme='light'] .chip-float img.is-github,
+[data-theme='light'] .chip-float img.is-mysql {
+  filter: none;
 }
 @keyframes float {
   0%,
@@ -500,12 +523,11 @@ onBeforeUnmount(() => {
   .chip-float {
     font-size: 11.5px;
     padding: 6px 11px;
+    gap: 5px;
   }
-  .chip-3 {
-    left: -6%;
-  }
-  .chip-2 {
-    right: -6%;
+  .chip-float img {
+    width: 14px;
+    height: 14px;
   }
 }
 </style>

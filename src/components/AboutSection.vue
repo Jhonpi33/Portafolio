@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGsap } from '../composables/useGsap.js'
 import { profile } from '../data/portfolio.js'
+import Icon from './Icon.vue'
 
 const { t, tm } = useI18n()
 
@@ -32,7 +33,10 @@ function p1() {
           <div class="soft" data-reveal="up">
             <h3>{{ t('about.knowledge') }}</h3>
             <div class="soft-chips" data-reveal="stagger">
-              <span v-for="k in tm('about.knowledgeItems')" :key="k" class="chip">✓ {{ k }}</span>
+              <span v-for="k in tm('about.knowledgeItems')" :key="k" class="chip">
+                <Icon name="check" :size="14" :stroke="2.4" />
+                {{ k }}
+              </span>
             </div>
           </div>
         </div>
@@ -40,7 +44,9 @@ function p1() {
         <!-- Columna derecha: tarjetas de datos -->
         <div class="about-facts" data-reveal="stagger">
           <article v-for="f in tm('about.facts')" :key="f.title" class="fact card">
-            <span class="fact-icon">{{ f.icon }}</span>
+            <span class="fact-icon">
+              <Icon :name="f.icon" :size="22" />
+            </span>
             <div>
               <h4>{{ f.title }}</h4>
               <p>{{ f.text }}</p>

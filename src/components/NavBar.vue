@@ -5,6 +5,8 @@ import { useScrollSpy, useScrolled } from '../composables/useScroll.js'
 import { theme, toggleTheme } from '../composables/useTheme.js'
 import { setLang } from '../i18n.js'
 import { profile } from '../data/portfolio.js'
+import LogoMark from './LogoMark.vue'
+import Icon from './Icon.vue'
 
 const { t, locale } = useI18n()
 
@@ -47,8 +49,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
     <div class="navbar-inner container">
       <!-- Logo -->
       <a href="#inicio" class="logo" @click.prevent="goTo('inicio')" aria-label="Inicio">
-        <span class="logo-mark">J</span>
-        <span class="logo-text">{{ profile.shortName }}<i>.</i></span>
+        <LogoMark :size="34" />
       </a>
 
       <!-- Links desktop -->
@@ -81,7 +82,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           :aria-label="t('nav.toggleTheme')"
           @click="toggleTheme"
         >
-          <span class="theme-icon">{{ isDark ? '☀️' : '🌙' }}</span>
+          <Icon class="theme-icon" :name="isDark ? 'sun' : 'moon'" :size="17" />
         </button>
 
         <a
@@ -91,7 +92,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           target="_blank"
           rel="noopener"
         >
-          📄 <span class="cv-label">{{ t('nav.downloadCV') }}</span>
+          <Icon name="download" :size="16" /> <span class="cv-label">{{ t('nav.downloadCV') }}</span>
         </a>
 
         <!-- Hamburguesa -->
@@ -123,7 +124,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           {{ link.label }}
         </a>
         <a :href="profile.cv" class="btn btn-primary" download target="_blank" rel="noopener">
-          📄 {{ t('nav.downloadCV') }}
+          <Icon name="download" :size="17" /> {{ t('nav.downloadCV') }}
         </a>
       </nav>
     </transition>
@@ -148,6 +149,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
 }
 
 .navbar-inner {
+  position: relative;
   height: var(--nav-h);
   display: flex;
   align-items: center;
@@ -165,28 +167,18 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
   font-size: 19px;
   color: var(--text-strong);
 }
-.logo-mark {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 17px;
-  font-weight: 800;
+.logo .mark {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.logo:hover .logo-mark {
+.logo:hover .mark {
   transform: rotate(-8deg) scale(1.06);
 }
-.logo-text i {
-  font-style: normal;
-  color: var(--accent-text);
-}
 
-/* links */
+/* links: centrados exactamente en el navbar, sin importar el ancho de logo/acciones */
 .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -361,12 +353,6 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
   }
   .cv-btn {
     padding: 10px 14px;
-  }
-}
-
-@media (max-width: 420px) {
-  .logo-text {
-    display: none;
   }
 }
 </style>
