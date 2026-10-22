@@ -5,8 +5,17 @@ import { useScrollSpy, useScrolled } from '../composables/useScroll.js'
 import { theme, toggleTheme } from '../composables/useTheme.js'
 import { setLang } from '../i18n.js'
 import { profile } from '../data/portfolio.js'
-import LogoMark from './LogoMark.vue'
-import Icon from './Icon.vue'
+import {
+  House,
+  User,
+  Wrench,
+  FolderGit2,
+  Send,
+  Languages,
+  Sun,
+  Moon,
+  Download,
+} from '@lucide/vue'
 
 const { t, locale } = useI18n()
 
@@ -17,11 +26,11 @@ const scrolled = useScrolled(30)
 const menuOpen = ref(false)
 
 const links = computed(() => [
-  { id: 'inicio', label: t('nav.home') },
-  { id: 'sobre-mi', label: t('nav.about') },
-  { id: 'habilidades', label: t('nav.skills') },
-  { id: 'proyectos', label: t('nav.projects') },
-  { id: 'contacto', label: t('nav.contact') },
+  { id: 'inicio', label: t('nav.home'), icon: House },
+  { id: 'sobre-mi', label: t('nav.about'), icon: User },
+  { id: 'habilidades', label: t('nav.skills'), icon: Wrench },
+  { id: 'proyectos', label: t('nav.projects'), icon: FolderGit2 },
+  { id: 'contacto', label: t('nav.contact'), icon: Send },
 ])
 
 const isDark = computed(() => theme.value === 'dark')
@@ -49,7 +58,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
     <div class="navbar-inner container">
       <!-- Logo -->
       <a href="#inicio" class="logo" @click.prevent="goTo('inicio')" aria-label="Inicio">
-        <LogoMark :size="34" />
+        <span class="monogramo">Jhon Pimiento</span>
       </a>
 
       <!-- Links desktop -->
@@ -61,7 +70,14 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           :class="{ active: active === link.id }"
           @click.prevent="goTo(link.id)"
         >
-          {{ link.label }}
+          <component
+            :is="link.icon"
+            class="nav-ic"
+            :size="15"
+            :stroke-width="2.1"
+            aria-hidden="true"
+          />
+          <span>{{ link.label }}</span>
         </a>
       </nav>
 
@@ -73,7 +89,8 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           :aria-label="t('nav.toggleLang')"
           @click="changeLang"
         >
-          {{ locale.toUpperCase() }}
+          <Languages class="ctrl-ic" :size="15" :stroke-width="2.1" aria-hidden="true" />
+          <span>{{ locale.toUpperCase() }}</span>
         </button>
 
         <button
@@ -82,7 +99,13 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           :aria-label="t('nav.toggleTheme')"
           @click="toggleTheme"
         >
-          <Icon class="theme-icon" :name="isDark ? 'sun' : 'moon'" :size="17" />
+          <component
+            :is="isDark ? Sun : Moon"
+            class="ctrl-ic theme-icon"
+            :size="17"
+            :stroke-width="2.1"
+            aria-hidden="true"
+          />
         </button>
 
         <a
@@ -92,7 +115,8 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           target="_blank"
           rel="noopener"
         >
-          <Icon name="download" :size="16" /> <span class="cv-label">{{ t('nav.downloadCV') }}</span>
+          <Download class="btn-ic" :size="16" :stroke-width="2.1" aria-hidden="true" />
+          <span class="cv-label">{{ t('nav.downloadCV') }}</span>
         </a>
 
         <!-- Hamburguesa -->
@@ -124,7 +148,8 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
           {{ link.label }}
         </a>
         <a :href="profile.cv" class="btn btn-primary" download target="_blank" rel="noopener">
-          <Icon name="download" :size="17" /> {{ t('nav.downloadCV') }}
+          <Download class="btn-ic" :size="17" :stroke-width="2.1" aria-hidden="true" />
+          {{ t('nav.downloadCV') }}
         </a>
       </nav>
     </transition>
@@ -167,11 +192,20 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
   font-size: 19px;
   color: var(--text-strong);
 }
-.logo .mark {
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+/* monograma de texto (reemplaza el icono azul) */
+.monogramo {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 17.5px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text-strong);
+  white-space: nowrap;
+  transition: color 0.25s ease;
 }
-.logo:hover .mark {
-  transform: rotate(-8deg) scale(1.06);
+.logo:hover .monogramo {
+  color: var(--accent-text);
 }
 
 /* links: centrados exactamente en el navbar, sin importar el ancho de logo/acciones */
@@ -185,12 +219,24 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
 }
 .nav-links a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   padding: 8px 14px;
   font-size: 14.5px;
   font-weight: 500;
   color: var(--text);
   border-radius: 999px;
   transition: color 0.25s ease, background 0.25s ease;
+}
+.nav-ic {
+  flex-shrink: 0;
+  color: var(--text-dim);
+  transition: color 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-links a:hover .nav-ic,
+.nav-links a.active .nav-ic {
+  color: var(--accent-text);
 }
 .nav-links a::after {
   content: '';
@@ -223,11 +269,13 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
   gap: 10px;
 }
 .ctrl-btn {
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   min-width: 40px;
   height: 40px;
-  padding: 0 10px;
+  padding: 0 11px;
   border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -241,9 +289,12 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
   border-color: var(--accent);
   transform: translateY(-2px);
 }
-.theme-icon {
-  font-size: 15px;
-  line-height: 1;
+.ctrl-ic {
+  flex-shrink: 0;
+  color: var(--text-strong);
+}
+.btn-ic {
+  flex-shrink: 0;
 }
 .cv-btn {
   text-decoration: none;
@@ -316,6 +367,7 @@ onBeforeUnmount(() => document.body.classList.remove('no-scroll'))
 }
 .mobile-menu .btn {
   font-size: 16px;
+  align-items: center;
   margin-top: 22px;
   opacity: 0;
   animation: menuIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;

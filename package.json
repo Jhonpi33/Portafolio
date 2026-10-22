@@ -12,6 +12,7 @@
     "gen:cv": "node scripts/generate-cv.mjs"
   },
   "dependencies": {
+    "@lucide/vue": "^1.61.0",
     "@vueuse/core": "^15.0.0",
     "gsap": "^3.15.0",
     "vue": "^3.5.42",

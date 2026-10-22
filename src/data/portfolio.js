@@ -339,6 +339,5 @@ export const projectCategories = [
 /* ---------- Redes sociales ---------- */
 export const socials = [
   { id: 'github', label: 'GitHub', url: profile.github, icon: 'github' },
-  { id: 'linkedin', label: 'LinkedIn', url: profile.linkedin, icon: 'linkedin' },
   { id: 'email', label: 'Email', url: `mailto:${profile.email}`, icon: 'mail' },
 ]

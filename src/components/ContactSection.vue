@@ -10,6 +10,10 @@ const { t } = useI18n()
 const root = ref(null)
 useGsap(root)
 
+// Enlaces sociales (sin el correo: esa tarjeta ya va arriba).
+// LinkedIn no se muestra: se quitó de `socials` en portfolio.js.
+const linkCards = socials.filter((s) => s.icon !== 'mail')
+
 const form = reactive({ name: '', email: '', message: '' })
 const status = ref('') // '' | 'error' | 'ok'
 const sending = ref(false)
@@ -65,7 +69,7 @@ function submit() {
           </a>
 
           <a
-            v-for="s in socials.filter((x) => x.icon !== 'mail')"
+            v-for="s in linkCards"
             :key="s.id"
             :href="s.url"
             class="link-card card"

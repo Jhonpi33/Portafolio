@@ -157,16 +157,17 @@ onBeforeUnmount(() => {
             :style="chipStyle(i)"
           >
             <span class="chip-float">
+              <!-- GitHub como SVG en línea: usa currentColor y así se ve
+                   siempre en tema claro y oscuro (sin depender de filter). -->
+              <Icon v-if="chip.name === 'GitHub'" name="github" :size="17" />
               <img
+                v-else
                 :src="chip.logo"
                 alt=""
                 width="17"
                 height="17"
                 aria-hidden="true"
-                :class="{
-                  'is-github': chip.name === 'GitHub',
-                  'is-mysql': chip.name === 'MySQL'
-                }"
+                :class="{ 'is-mysql': chip.name === 'MySQL' }"
               />
               {{ chip.name }}
             </span>
@@ -406,18 +407,14 @@ onBeforeUnmount(() => {
   object-fit: contain;
   flex-shrink: 0;
 }
-/* Logos que no se veían sobre el chip oscuro (tema dark):
-   - GitHub: el SVG original es casi negro (#181616) y desaparecía;
-     se pinta en blanco (versión oficial de GitHub para fondos oscuros).
-   - MySQL: azul muy oscuro (#00618A); se aclara hasta lograr contraste.
-   En tema claro se revierte: ahí los logos originales ya son visibles. */
-.chip-float img.is-github {
-  filter: brightness(0) invert(1);
-}
+/* Logo MySQL: azul muy oscuro (#00618A) que desaparecía sobre el chip
+   en tema oscuro, así que se aclara. En tema claro se revierte: ahí el
+   color original ya tiene buen contraste.
+   El de GitHub ya no necesita esto: ahora va como SVG en línea con
+   currentColor, así que se ve siempre en claro y en oscuro. */
 .chip-float img.is-mysql {
   filter: brightness(1.9) saturate(1.2);
 }
-[data-theme='light'] .chip-float img.is-github,
 [data-theme='light'] .chip-float img.is-mysql {
   filter: none;
 }
