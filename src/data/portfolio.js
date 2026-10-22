@@ -17,7 +17,7 @@ export const profile = {
   email: 'jhonpimiento31@gmail.com',
   github: 'https://github.com/Jhonpi33',
   linkedin: 'https://www.linkedin.com/in/tu-usuario',
-  cv: '/cv/Hoja_De_Vida_Jhon_Pimiento.pdf', // tu hoja de vida real en public/cv/
+  cv: '/cv/HojaDeVida_SENA_Jhon_Alexander_Pimiento.pdf', // tu hoja de vida real en public/cv/
 }
 
 /* ---------- Habilidades agrupadas por categoría ---------- */

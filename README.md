@@ -63,7 +63,7 @@ PORTAFOLIO_Jhonpi/
 ├── index.html                  # meta, fuentes, anti-flash de tema
 ├── public/
 │   ├── favicon.svg
-│   ├── cv/Hoja_De_Vida_Jhon_Pimiento.pdf # 👈 tu hoja de vida
+│   ├── cv/HojaDeVida_SENA_Jhon_Alexander_Pimiento.pdf # 👈 tu hoja de vida
 │   └── img/
 │       ├── perfil.jpg           # 👈 tu foto
 │       └── proyectos/*.svg      # 👈 capturas reales
@@ -125,7 +125,7 @@ export const profile = {
   email:    'jhonpimiento31@gmail.com',           // 👈 tu correo real
   github:   'https://github.com/Jhonpi33',        // 👈 tu GitHub
   linkedin: 'https://www.linkedin.com/in/tu-usuario', // 👈 pon tu LinkedIn real (pendiente)
-  cv:       '/cv/Hoja_De_Vida_Jhon_Pimiento.pdf',
+  cv:       '/cv/HojaDeVida_SENA_Jhon_Alexander_Pimiento.pdf',
 }
 ```
 
@@ -144,7 +144,7 @@ Todos los textos del sitio en `es` y `en`. Si cambias una clave, cámbiala en am
 | --- | --- |
 | Foto de perfil | `public/img/perfil.jpg` |
 | Capturas de proyectos | `public/img/proyectos/*.svg` → reemplázalas por `.png`/`.jpg` (actualiza la extensión en `portfolio.js`) |
-| Hoja de vida | `public/cv/Hoja_De_Vida_Jhon_Pimiento.pdf` (tu CV real) |
+| Hoja de vida | `public/cv/HojaDeVida_SENA_Jhon_Alexander_Pimiento.pdf` (tu CV real) |
 
 Regenerar los placeholders:
 

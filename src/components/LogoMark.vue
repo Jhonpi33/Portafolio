@@ -53,7 +53,20 @@ const shineId = `jp-mark-shine-${uid}`
       stroke-width="1"
     />
 
-    <!-- monograma -->
+    <!-- monograma JP -->
+    <text
+      x="22"
+      y="22"
+      text-anchor="middle"
+      dominant-baseline="central"
+      fill="#ffffff"
+      font-family="var(--font-head)"
+      font-size="18"
+      font-weight="800"
+      letter-spacing="-0.5"
+    >
+      JP
+    </text>
   </svg>
 </template>
 
